@@ -37,4 +37,44 @@ describe("Test library", () => {
     const result = await library.setBitAssembly(0, 5);
     expect(result).to.eq(32);
   })
+
+  it("Is bit set 0 (solidity)", async () => {
+    const result = await library.isBitSet(1, 0);
+    expect(result).to.eq(true);
+  })
+
+  it("Is bit set 0 (solidity)", async () => {
+    const result = await library.isBitSet(32, 0);
+    expect(result).to.eq(false);
+  })
+
+  it("Is bit set 0 (assembly)", async () => {
+    const result = await library.isBitSetAssembly(1, 0);
+    expect(result).to.eq(true);
+  })
+
+  it("Is bit set 0 (assembly)", async () => {
+    const result = await library.isBitSetAssembly(32, 0);
+    expect(result).to.eq(false);
+  })
+
+  it("Is bit set 5 (solidity)", async () => {
+    const result = await library.isBitSet(1, 5);
+    expect(result).to.eq(false);
+  })
+
+  it("Is bit set 5 (solidity)", async () => {
+    const result = await library.isBitSet(32, 5);
+    expect(result).to.eq(true);
+  })
+
+  it("Is bit set 5 (assembly)", async () => {
+    const result = await library.isBitSetAssembly(1, 5);
+    expect(result).to.eq(false);
+  })
+
+  it("Is bit set 5 (assembly)", async () => {
+    const result = await library.isBitSetAssembly(32, 5);
+    expect(result).to.eq(true);
+  })
 })

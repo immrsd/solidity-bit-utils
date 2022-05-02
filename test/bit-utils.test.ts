@@ -78,3 +78,30 @@ describe("Test library", () => {
     expect(result).to.eq(true);
   })
 })
+
+let exampleContract: Example;
+describe("Gas test", () => {
+  before(async () => {
+    const [deployer, caller] = await ethers.getSigners();
+    const factory = new Example__factory(deployer);
+    const contract = await factory.deploy();
+    const address = contract.address;
+    exampleContract = new Example__factory(caller).attach(address);
+  })
+
+  it("Call set bit (solidity)", async () => {
+    await exampleContract.callSetBit(0, 5, 10);  
+  })
+  
+  it("Call set bit (assembly)", async () => {
+    await exampleContract.callSetBitAssembly(0, 5, 10);  
+  })
+
+  it("Call is bit set (solidity)", async () => {
+    await exampleContract.callIsBitSet(32, 5, 10);  
+  })
+
+  it("Call is bit set (assembly)", async () => {
+    await exampleContract.callIsBitSetAssembly(32, 5, 10);  
+  })
+})
